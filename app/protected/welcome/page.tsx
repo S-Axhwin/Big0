@@ -128,7 +128,7 @@ export default function CareerPathForm() {
     supabase.auth.getUser().then(({ data }) => {
       supabase.from('profiles').select('*').eq('id', data?.user?.id).then(({ data }) => {
         console.log(data);
-        if(data?.length === 0) {
+        if(data?.length !== 0) {
           redirect("/protected");
         }
       });
