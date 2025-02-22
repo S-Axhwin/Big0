@@ -1,34 +1,26 @@
-import { createClient } from "@/utils/supabase/server";
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server'
+import { createClient } from '@/utils/supabase/server'
 
 export async function GET(request: Request) {
-  const requestUrl = new URL(request.url);
-  const code = requestUrl.searchParams.get("code");
-  const origin = "https://main.d31uiqamv7wz5n.amplifyapp.com";
-  const redirectTo = requestUrl.searchParams.get("redirect_to")?.toString();
-
+  const { searchParams, origin } = new URL(request.url)
+  const code = searchParams.get('code')
+  const next = searchParams.get('next') ?? '/'
   if (code) {
-    const supabase = await createClient();
-    await supabase.auth.exchangeCodeForSession(code);
-    
-    const {data: userData, error} = await supabase.auth.getUser();
-    if (error) {
-      console.error(error);
-      return NextResponse.redirect(`${origin}/login`);
-    }
-    
-    const { id } = userData.user;
-    const {data, error: userError} = await supabase.from("profiles").select("*").eq("id", id);
-    if (userError) {
-      console.error(userError);
-      return NextResponse.redirect(`${origin}/login?error=user_error`);
-    }
-    
-    if (data.length === 0) {
-      return NextResponse.redirect(`${origin}/protected/welcome`);
+    const supabase = await createClient()
+    const { error } = await supabase.auth.exchangeCodeForSession(code)
+    if (!error) {
+      const forwardedHost = request.headers.get('x-forwarded-host') // original origin before load balancer
+      const isLocalEnv = process.env.NODE_ENV === 'development'
+      if (isLocalEnv) {
+        return NextResponse.redirect(`${origin}${next}`)
+      } else if (forwardedHost) {
+        return NextResponse.redirect(`https://${forwardedHost}${next}`)
+      } else {
+        return NextResponse.redirect(`${origin}${next}`)
+      }
     }
   }
 
-  // URL to redirect to after sign up process completes
-  return NextResponse.redirect(`${origin}/protected`);
+
+  return NextResponse.redirect(`${origin}/auth/auth-code-error`)
 }

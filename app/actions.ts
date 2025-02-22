@@ -41,7 +41,7 @@ export const signUpAction = async (formData: FormData) => {
 
 export const signInAction = async () => {
   const supabase = await createClient();
-  const origin = "https://main.d31uiqamv7wz5n.amplifyapp.com";
+  const origin = (await headers()).get("origin");
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {

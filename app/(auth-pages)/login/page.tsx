@@ -6,7 +6,7 @@ import { signInAction } from "@/app/actions"
 
 const page = () => {
   return (
-    <div>
+    <div className="flex justify-center items-center h-screen">
       <Card>
         <CardHeader>
             <CardTitle>Login</CardTitle>
