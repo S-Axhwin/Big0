@@ -23,7 +23,7 @@ export const signUpAction = async (formData: FormData) => {
     email,
     password,
     options: {
-      emailRedirectTo: `${origin}/auth/callback`,
+      emailRedirectTo: `${"https://main.d31uiqamv7wz5n.amplifyapp.com"}/auth/callback`,
     },
   });
 
@@ -47,12 +47,12 @@ export const signInAction = async () => {
     options: {
       redirectTo: `${origin}/auth/callback`,
     },
-  })
+  });
   if (error) {
     console.error(error.code + " " + error.message);
     return encodedRedirect("error", "/login", error.message);
   }
-  return redirect(data.url)
+  return redirect(data.url);
 };
 
 export const forgotPasswordAction = async (formData: FormData) => {
