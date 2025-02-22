@@ -14,6 +14,7 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent } from "@/components/ui/card"
 import { encodedRedirect } from "@/utils/utils"
 import { redirect } from "next/navigation"
+import { useEffect } from "react"
 
 const careerCategories = [
   {
@@ -121,6 +122,18 @@ export default function CareerPathForm() {
     
     return redirect("/protected");
   }
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data }) => {
+      supabase.from('profiles').select('*').eq('id', data.user.id).then(({ data }) => {
+        console.log(data);
+      });
+      if(data.user) {
+        redirect("/protected");
+      }
+    });
+  }, []);
 
   return (
     <div className="container mx-auto max-w-3xl px-4 py-8">

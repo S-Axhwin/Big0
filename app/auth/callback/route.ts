@@ -10,7 +10,7 @@ export async function GET(request: Request) {
   const {
     data: { user },
   } = await supabase.auth.getUser()
-
+  console.log(user)
   if (user) {
     // Check if the user exists in the profiles table
     const { data: profile, error } = await supabase
@@ -18,7 +18,7 @@ export async function GET(request: Request) {
       .select('*')
       .eq('id', user.id)
       .single()
-
+    console.log(profile)
     if(!profile) {
       return NextResponse.redirect(`${origin}/protected/welcome`)
     }
@@ -31,11 +31,11 @@ export async function GET(request: Request) {
       const isLocalEnv = process.env.NODE_ENV === 'development'
 
       if (isLocalEnv) {
-        return NextResponse.redirect(`${origin}${next}`)
+        return NextResponse.redirect(`${origin}/protected/welcome`)
       } else if (forwardedHost) {
         return NextResponse.redirect(`https://${forwardedHost}${next}`)
       } else {
-        return NextResponse.redirect(`${origin}${next}`)
+        return NextResponse.redirect(`${origin}/protected/welcome`)
       }
     }
   }
