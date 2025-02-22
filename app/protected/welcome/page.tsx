@@ -126,7 +126,7 @@ export default function CareerPathForm() {
   useEffect(() => {
     const supabase = createClient();
     supabase.auth.getUser().then(({ data }) => {
-      supabase.from('profiles').select('*').eq('id', data.user.id).then(({ data }) => {
+      supabase.from('profiles').select('*').eq('id', data?.user?.id).then(({ data }) => {
         console.log(data);
       });
       if(data.user) {
