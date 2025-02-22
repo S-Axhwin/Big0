@@ -32,13 +32,13 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <a
-              href="/assessment"
+              href="/login"
               className="apple-button"
             >
               Take Career Assessment
             </a>
             <a
-              href="/explore"
+              href="/login"
               className="text-sm font-semibold leading-6 text-foreground"
             >
               Explore Careers <span aria-hidden="true">→</span>

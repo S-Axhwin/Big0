@@ -21,7 +21,7 @@ export default function Header() {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
-          <Link href="/" className="-m-1.5 p-1.5">
+          <Link href="/login" className="-m-1.5 p-1.5">
             <span className="sr-only">Career Path Finder</span>
             <img
               className="h-8 w-auto"
@@ -32,7 +32,7 @@ export default function Header() {
         </div>
         <div className="flex gap-x-12">
           <Link
-            href="https://www.flowersandsaints.com.au"
+            href="/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm font-semibold leading-6 text-foreground hover:text-primary transition-colors"
@@ -40,7 +40,7 @@ export default function Header() {
             Work
           </Link>
           <Link
-            href="https://www.flowersandsaints.com.au"
+            href="/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm font-semibold leading-6 text-foreground hover:text-primary transition-colors"
@@ -48,7 +48,7 @@ export default function Header() {
             About
           </Link>
           <Link
-            href="https://www.flowersandsaints.com.au"
+            href="/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm font-semibold leading-6 text-foreground hover:text-primary transition-colors"
