@@ -4,20 +4,20 @@
 
 @layer base {
   :root {
-    --background: 37 100% 81%;  /* #FFCF9D */
-    --foreground: 222.2 84% 4.9%;
+    --background: 37 100% 95%;  /* Adjusted for better contrast */
+    --foreground: 222.2 84% 10%; /* Adjusted for better contrast */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 222.2 84% 10%; /* Adjusted for better contrast */
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 222.2 84% 10%; /* Adjusted for better contrast */
     --primary: 20 100% 77%;  /* #FFB38E */
     --primary-foreground: 210 40% 98%;
     --secondary: 37 100% 81%; /* #FFCF9D */
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary-foreground: 222.2 47.4% 20%; /* Adjusted for better contrast */
     --muted: 31 100% 72%; /* #FFB26F */
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted-foreground: 215.4 16.3% 50%; /* Adjusted for better contrast */
     --accent: 21 65% 62%; /* #DE8F5F */
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent-foreground: 222.2 47.4% 20%; /* Adjusted for better contrast */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
@@ -27,18 +27,18 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 222.2 84% 10%; /* Adjusted for better contrast */
     --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
+    --card: 222.2 84% 10%; /* Adjusted for better contrast */
     --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
+    --popover: 222.2 84% 10%; /* Adjusted for better contrast */
     --popover-foreground: 210 40% 98%;
     --primary: 20 100% 77%;  /* #FFB38E */
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary-foreground: 222.2 47.4% 20%; /* Adjusted for better contrast */
     --secondary: 37 100% 81%; /* #FFCF9D */
     --secondary-foreground: 210 40% 98%;
     --muted: 31 100% 72%; /* #FFB26F */
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted-foreground: 215 20.2% 70%; /* Adjusted for better contrast */
     --accent: 21 65% 62%; /* #DE8F5F */
     --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
@@ -74,8 +74,6 @@
 .hover-lift {
   @apply transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg;
 }
-
-
 
 @layer base {
   * {

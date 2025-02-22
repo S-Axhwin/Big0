@@ -74,7 +74,9 @@ export default async function ProfilePage() {
             </div>
           </CardContent>
           <CardFooter className=" mt-auto">
-            <Button variant="destructive" size="sm" className="w-full">Logout</Button>
+            <form action={signOutAction} className="w-full" >
+            <Button variant="destructive"  size="sm" className="w-full">Logout</Button>
+            </form>
           </CardFooter>
         </Card>
 
