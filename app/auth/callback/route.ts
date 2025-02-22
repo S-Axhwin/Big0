@@ -4,7 +4,7 @@ import { createClient } from '@/utils/supabase/server'
 
 export async function GET(request: Request) {
   let { searchParams, origin } = new URL(request.url)
-  origin = "https://main.d31uiqamv7wz5n.amplifyapp.com"
+
   const code = searchParams.get('code')
   // if "next" is in param, use it as the redirect URL
   const next = searchParams.get('next') ?? '/'
