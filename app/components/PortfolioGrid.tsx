@@ -49,7 +49,7 @@ const projects = [
   },
 ]
 
-const categories = ["All", ...new Set(projects.map((project) => project.category))]
+const categories = ["All", ...Array.from(new Set(projects.map((project) => project.category)))]
 
 export default function PortfolioGrid() {
   const [filter, setFilter] = useState("All")
