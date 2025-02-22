@@ -18,7 +18,9 @@ export async function GET(request: Request) {
       .select('*')
       .eq('id', user.id)
       .single()
-
+    if(profile) {
+      return NextResponse.redirect(`${origin}/protected/welcome`)
+    }
     if (!error && profile) {
       // User exists, redirect accordingly
       return NextResponse.redirect(`${origin}${next}`)
