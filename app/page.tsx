@@ -17,7 +17,6 @@ export default function Home() {
       <FeatureCarousel />
       <Timeline />
       <Marquee />
-      {/* <ContactForm /> */}
       <NewsletterSubscribe />
     </>
   )

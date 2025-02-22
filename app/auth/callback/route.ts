@@ -2,9 +2,6 @@ import { createClient } from "@/utils/supabase/server";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
-  // The `/auth/callback` route is required for the server-side auth flow implemented
-  // by the SSR package. It exchanges an auth code for the user's session.
-  // https://supabase.com/docs/guides/auth/server-side/nextjs
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get("code");
   const origin = "https://main.d31uiqamv7wz5n.amplifyapp.com";
@@ -24,16 +21,12 @@ export async function GET(request: Request) {
     const {data, error: userError} = await supabase.from("profiles").select("*").eq("id", id);
     if (userError) {
       console.error(userError);
-      return NextResponse.redirect(`${origin}/login`);
+      return NextResponse.redirect(`${origin}/login?error=user_error`);
     }
     
     if (data.length === 0) {
       return NextResponse.redirect(`${origin}/protected/welcome`);
     }
-  }
-  
-  if (redirectTo) {
-    return NextResponse.redirect(`${origin}${redirectTo}`);
   }
 
   // URL to redirect to after sign up process completes
