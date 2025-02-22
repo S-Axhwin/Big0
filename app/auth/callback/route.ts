@@ -7,22 +7,7 @@ export async function GET(request: Request) {
   const next = searchParams.get('next') ?? '/'
 
   const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-  console.log(user)
-  if (user) {
-    // Check if the user exists in the profiles table
-    const { data: profile, error } = await supabase
-      .from('profiles')
-      .select('*')
-      .eq('id', user.id)
-      .single()
-    console.log(profile)
-    if(!profile) {
-      return NextResponse.redirect(`${origin}/protected/welcome`)
-    }
-  }
+  
 
   if (code) {
     const { error } = await supabase.auth.exchangeCodeForSession(code)
