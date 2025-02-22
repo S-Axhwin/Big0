@@ -32,8 +32,6 @@ export async function GET(request: Request) {
 
       if (isLocalEnv) {
         return NextResponse.redirect(`${origin}/protected/welcome`)
-      } else if (forwardedHost) {
-        return NextResponse.redirect(`https://${forwardedHost}${next}`)
       } else {
         return NextResponse.redirect(`${origin}/protected/welcome`)
       }
