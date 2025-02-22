@@ -13,8 +13,25 @@ export async function GET(request: Request) {
   if (code) {
     const supabase = await createClient();
     await supabase.auth.exchangeCodeForSession(code);
+    
+    const {data: userData, error} = await supabase.auth.getUser();
+    if (error) {
+      console.error(error);
+      return NextResponse.redirect(`${origin}/login`);
+    }
+    
+    const { id } = userData.user;
+    const {data, error: userError} = await supabase.from("profiles").select("*").eq("id", id);
+    if (userError) {
+      console.error(userError);
+      return NextResponse.redirect(`${origin}/login`);
+    }
+    
+    if (data.length === 0) {
+      return NextResponse.redirect(`${origin}/protected/welcome`);
+    }
   }
-
+  
   if (redirectTo) {
     return NextResponse.redirect(`${origin}${redirectTo}`);
   }
